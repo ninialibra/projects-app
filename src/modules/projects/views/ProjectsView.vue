@@ -12,11 +12,11 @@
       </thead>
       <tbody>
         <!-- row 2 -->
-        <tr class="hover">
-          <th>2</th>
-          <td>Hart Hagerty</td>
-          <td>Desktop Support Technician</td>
-          <td>Purple</td>
+        <tr class="hover" v-for="(project, index) in projectsStore.projects" :key="project.id">
+          <th>{{ index + 1 }}</th>
+          <td>{{ project.name }}</td>
+          <td>{{ project.tasks.length }}</td>
+          <td><progress class="progress progress-primary w-56" value="40" max="100"></progress></td>
         </tr>
       </tbody>
     </table>
@@ -68,8 +68,12 @@ import CustomModal from '@/modules/common/components/CustomModal.vue';
 import AddCircle from '@/modules/common/icons/AddCircle.vue';
 import PawIcon from '@/modules/common/icons/PawIcon.vue';
 import { ref } from 'vue';
+import { useProjectsStore } from '../store/projects.store';
 
 const modalOpen = ref(false);
 const customModalOpen = ref(false);
+
+const projectsStore = useProjectsStore();
+
 const onNewValue = (projectName: string) => {};
 </script>
